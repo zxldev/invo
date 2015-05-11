@@ -50,9 +50,9 @@ class ProductsForm extends Form
             new PresenceOf(array(
                 'message' => 'Price is required'
             )),
-            new Numericality(array(
-                'message' => 'Price is required'
-            ))
+//            new Numericality(array(
+//                'message' => 'Price is required'
+//            ))
         ));
         $this->add($price);
     }

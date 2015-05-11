@@ -17,12 +17,14 @@ class CompaniesForm extends Form
 
         if (!isset($options['edit'])) {
             $element = new Text("id");
+            $element->setAttribute('class','form-control');
             $this->add($element->setLabel("Id"));
         } else {
             $this->add(new Hidden("id"));
         }
 
         $name = new Text("name");
+        $name->setAttribute('class','form-control');
         $name->setLabel("Name");
         $name->setFilters(array('striptags', 'string'));
         $name->addValidators(array(
@@ -33,6 +35,7 @@ class CompaniesForm extends Form
         $this->add($name);
 
         $telephone = new Text("telephone");
+        $telephone->setAttribute('class','form-control');
         $telephone->setLabel("Telephone");
         $telephone->setFilters(array('striptags', 'string'));
         $telephone->addValidators(array(
@@ -44,6 +47,7 @@ class CompaniesForm extends Form
 
         $address = new Text("address");
         $address->setLabel("address");
+        $address->setAttribute('class','form-control');
         $address->setFilters(array('striptags', 'string'));
         $address->addValidators(array(
             new PresenceOf(array(
@@ -54,6 +58,7 @@ class CompaniesForm extends Form
 
         $city = new Text("city");
         $city->setLabel("city");
+        $city->setAttribute('class','form-control');
         $city->setFilters(array('striptags', 'string'));
         $city->addValidators(array(
             new PresenceOf(array(

@@ -1,9 +1,13 @@
 <div class="page-header">
-    <h2>About INVO</h2>
+    <h2>关于BSITO</h2>
 </div>
 
 <p>
-This is a sample application for the <a href="http://phalconphp.com">Phalcon Framework</a>. We expect to implement as many features as possible to show how the framework works and its potential.
-Please write us if you have any feedback or comments. Feel free to clone the code of this application <a href="https://github.com/phalcon/invo">here</a>
-.Thanks!.
+这是百市通图书借阅应用网站。更多关于百市通，请访问：
+    <br><a href="http://b.s">百市通论坛</a>
+    <br><a href="http://p.s">百市通原型网站</a>
+
+
+    <br>源代码点击<a href="https://github.com/zxldev/invo">这里</a>下载。
+    <br>谢谢!
 </p>

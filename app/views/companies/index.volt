@@ -15,11 +15,9 @@
     {% if is_a(element, 'Phalcon\Forms\Element\Hidden') %}
 {{ element }}
     {% else %}
-<div class="control-group">
-    {{ element.label(['class': 'control-label']) }}
-    <div class="controls">
+<div class="form-group">
+    {{ element.label() }}
         {{ element }}
-    </div>
 </div>
     {% endif %}
 {% endfor %}

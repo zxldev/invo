@@ -13,52 +13,52 @@ class Elements extends Component
     private $_headerMenu = array(
         'navbar-left' => array(
             'index' => array(
-                'caption' => 'Home',
+                'caption' => '主页',
                 'action' => 'index'
             ),
             'invoices' => array(
-                'caption' => 'Invoices',
+                'caption' => '我的图书',
                 'action' => 'index'
             ),
             'about' => array(
-                'caption' => 'About',
+                'caption' => '关于',
                 'action' => 'index'
             ),
             'contact' => array(
-                'caption' => 'Contact',
+                'caption' => '联系我们',
                 'action' => 'index'
             ),
         ),
         'navbar-right' => array(
             'session' => array(
-                'caption' => 'Log In/Sign Up',
+                'caption' => '登录/注册',
                 'action' => 'index'
             ),
         )
     );
 
     private $_tabs = array(
-        'Invoices' => array(
+        '我的图书' => array(
             'controller' => 'invoices',
             'action' => 'index',
             'any' => false
         ),
-        'Companies' => array(
+        '公司' => array(
             'controller' => 'companies',
             'action' => 'index',
             'any' => true
         ),
-        'Products' => array(
+        '产品' => array(
             'controller' => 'products',
             'action' => 'index',
             'any' => true
         ),
-        'Product Types' => array(
+        '产品类型' => array(
             'controller' => 'producttypes',
             'action' => 'index',
             'any' => true
         ),
-        'Your Profile' => array(
+        '个人资料' => array(
             'controller' => 'invoices',
             'action' => 'profile',
             'any' => false
@@ -76,7 +76,7 @@ class Elements extends Component
         $auth = $this->session->get('auth');
         if ($auth) {
             $this->_headerMenu['navbar-right']['session'] = array(
-                'caption' => 'Log Out',
+                'caption' => '退出',
                 'action' => 'end'
             );
         } else {
