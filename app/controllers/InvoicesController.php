@@ -7,7 +7,7 @@ class InvoicesController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Manage your Invoices');
+        $this->tag->setTitle('管理我的图书');
         parent::initialize();
     }
 

@@ -7,7 +7,7 @@ class CompaniesController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Manage your companies');
+        $this->tag->setTitle('管理你的公司');
         parent::initialize();
     }
 

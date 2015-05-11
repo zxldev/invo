@@ -9,7 +9,7 @@ class ContactController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Contact us');
+        $this->tag->setTitle('联系我们');
         parent::initialize();
     }
 

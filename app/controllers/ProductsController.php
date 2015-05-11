@@ -12,7 +12,7 @@ class ProductsController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Manage your products');
+        $this->tag->setTitle('管理');
         parent::initialize();
     }
 

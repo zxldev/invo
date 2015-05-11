@@ -9,7 +9,7 @@ class SessionController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Sign Up/Sign In');
+        $this->tag->setTitle('登录/注册');
         parent::initialize();
     }
 
