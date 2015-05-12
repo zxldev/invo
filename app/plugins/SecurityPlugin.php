@@ -26,7 +26,7 @@ class SecurityPlugin extends Plugin
 
 		//throw new \Exception("something");
 
-		if (!isset($this->persistent->acl)) {
+		if (isset($this->persistent->acl)) {
 
 			$acl = new AclList();
 
@@ -45,6 +45,7 @@ class SecurityPlugin extends Plugin
 			$privateResources = array(
 				'companies'    => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 				'products'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'book'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 				'producttypes' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 				'invoices'     => array('index', 'profile')
 			);

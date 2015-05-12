@@ -2,7 +2,7 @@
 {{ content() }}
 
 <div class="jumbotron">
-    <h1>Internal Error</h1>
-    <p>Something went wrong, if the error continue please contact us</p>
-    <p>{{ link_to('index', 'Home', 'class': 'btn btn-primary') }}</p>
+    <h1>内部错误</h1>
+    <p>出错了，如果这个错误持续出现，请联系我们。</p>
+    <p>{{ link_to('index', '首页', 'class': 'btn btn-primary') }}</p>
 </div>

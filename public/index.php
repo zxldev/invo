@@ -3,7 +3,6 @@
 error_reporting(E_ALL);
 
 use Phalcon\Mvc\Application;
-use Phalcon\Config\Adapter\Ini as ConfigIni;
 
 //$_GET['_url'] = '/contact/send';
 //$_SERVER['REQUEST_METHOD'] = 'POST';
@@ -15,7 +14,7 @@ try {
 	/**
 	 * Read the configuration
 	 */
-	$config = new ConfigIni(APP_PATH . 'app/config/config.ini');
+	$config = include APP_PATH . "app/config/config.php";
 
 	/**
 	 * Auto-loader configuration

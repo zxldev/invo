@@ -9,6 +9,7 @@ use Phalcon\Mvc\Model\Metadata\Memory as MetaData;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -81,14 +82,46 @@ $di->set('volt', function($view, $di) {
 /**
  * Database connection is created based in the parameters defined in the configuration file
  */
-$di->set('db', function() use ($config) {
-	$dbclass = 'Phalcon\Db\Adapter\Pdo\\' . $config->database->adapter;
-	return new $dbclass(array(
-		"host"     => $config->database->host,
-		"username" => $config->database->username,
-		"password" => $config->database->password,
-		"dbname"   => $config->database->name
-	));
+$di->set('db',function () use ($config,$di) {
+
+	$connection = new DbAdapter($config->database->toArray());
+
+	$debug = $config->application->debug;
+	if ($debug) {
+		$eventsManager = $di->getShared('eventsManager');
+
+		$logger = $di->getShared('logger');
+
+		//Listen all the database events
+		$eventsManager->attach(
+			'db',
+			function ($event, $connection) use ($logger) {
+				/** @var Phalcon\Events\Event $event */
+				if ($event->getType() == 'beforeQuery') {
+					/** @var DatabaseConnection $connection */
+					$variables = $connection->getSQLVariables();
+					if ($variables) {
+						$logger->log($connection->getSQLStatement() . ' [' . join(',', $variables) . ']', \Phalcon\Logger::INFO);
+					} else {
+						$logger->log($connection->getSQLStatement(), \Phalcon\Logger::INFO);
+					}
+				}
+			}
+		);
+
+		//Assign the eventsManager to the db adapter instance
+		$connection->setEventsManager($eventsManager);
+	}
+	return $connection;
+}
+);
+
+
+/**
+ * write the logger
+ */
+$di->setShared('logger',function(){
+	return   new Phalcon\Logger\Adapter\File(APP_PATH."app/logs/debug.log");
 });
 
 /**
