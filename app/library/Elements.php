@@ -43,17 +43,17 @@ class Elements extends Component
             'action' => 'index',
             'any' => false
         ),
-        '公司' => array(
-            'controller' => 'companies',
+        '图书馆' => array(
+            'controller' => 'book',
             'action' => 'index',
             'any' => true
         ),
-        '产品' => array(
-            'controller' => 'products',
+        '预借' => array(
+            'controller' => 'pre_borrow',
             'action' => 'index',
             'any' => true
         ),
-        '产品类型' => array(
+        '我想看的' => array(
             'controller' => 'producttypes',
             'action' => 'index',
             'any' => true

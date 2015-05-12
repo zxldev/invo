@@ -58,7 +58,7 @@
             <label for="active">Active</label>
         </td>
         <td align="left">
-                {{ text_field("active") }}
+                {{ text_field("active""size" : 30) }}
         </td>
     </tr>
     <tr>

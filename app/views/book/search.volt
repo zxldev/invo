@@ -4,15 +4,15 @@
 <table width="100%">
     <tr>
         <td align="left">
-            {{ link_to("book/index", "Go Back") }}
+            {{ link_to("book/index", "Go Back","class":"btn btn-primary") }}
         </td>
         <td align="right">
-            {{ link_to("book/new", "Create ") }}
+            {{ link_to("book/new", "Create ","class":"btn btn-primary") }}
         </td>
     </tr>
 </table>
 
-<table class="browse" align="center">
+<table class="browse table table-striped table-bordered table-hover" align="center">
     <thead>
         <tr>
             <th>Id</th>

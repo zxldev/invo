@@ -23,10 +23,9 @@ class SecurityPlugin extends Plugin
 	 */
 	public function getAcl()
 	{
-
+unset($this->persistent->acl);
 		//throw new \Exception("something");
-
-		if (!isset($this->persistent->acl)) {
+		if (true||isset($this->persistent->acl)) {
 
 			$acl = new AclList();
 
@@ -35,7 +34,8 @@ class SecurityPlugin extends Plugin
 			//Register roles
 			$roles = array(
 				'users'  => new Role('Users'),
-				'guests' => new Role('Guests')
+				'guests' => new Role('Guests'),
+				'bookadmin'=>new Role('BookaAdmin')
 			);
 			foreach ($roles as $role) {
 				$acl->addRole($role);
@@ -43,15 +43,27 @@ class SecurityPlugin extends Plugin
 
 			//Private area resources
 			$privateResources = array(
-				'companies'    => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				'products'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 				'book'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				'producttypes' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'pre_borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 				'invoices'     => array('index', 'profile')
 			);
 			foreach ($privateResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);
 			}
+
+			//管理员Private area resources
+			$adminprivateResources = array(
+				'book'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'pre_borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'invoices'     => array('index', 'profile')
+			);
+			foreach ($adminprivateResources as $resource => $actions) {
+				$acl->addResource(new Resource($resource), $actions);
+			}
+
+
 
 			//Public area resources
 			$publicResources = array(
@@ -75,10 +87,19 @@ class SecurityPlugin extends Plugin
 				}
 			}
 
+
+
 			//Grant acess to private area to role Users
 			foreach ($privateResources as $resource => $actions) {
 				foreach ($actions as $action){
 					$acl->allow('Users', $resource, $action);
+				}
+			}
+
+			//TODO 修改这里代码
+			foreach ($adminprivateResources as $resource => $actions) {
+				foreach ($actions as $action){
+					$acl->allow('BookaAdmin', $resource, $action);
 				}
 			}
 
