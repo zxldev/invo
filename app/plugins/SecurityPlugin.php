@@ -23,9 +23,9 @@ class SecurityPlugin extends Plugin
 	 */
 	public function getAcl()
 	{
-unset($this->persistent->acl);
+//       unset($this->persistent->acl);
 		//throw new \Exception("something");
-		if (true||isset($this->persistent->acl)) {
+		if (!isset($this->persistent->acl)) {
 
 			$acl = new AclList();
 
@@ -70,7 +70,7 @@ unset($this->persistent->acl);
 				'index'      => array('index'),
 				'about'      => array('index'),
 				'register'   => array('index'),
-				'errors'     => array('show404', 'show500'),
+				'errors'     => array('show404', 'show500','show401'),
 				'session'    => array('index', 'register', 'start', 'end'),
 				'contact'    => array('index', 'send')
 			);
@@ -121,23 +121,35 @@ unset($this->persistent->acl);
 
 		$auth = $this->session->get('auth');
 		if (!$auth){
-			$role = 'Guests';
+            $roles =array( 'Guests');
 		} else {
-			$role = 'Users';
+            $rolestr = $this->redis->get('userrole:userid:'.$auth['id']);
+            if($rolestr){
+                $roles = json_decode($rolestr);
+            }else{
+                $roles =array( 'Guests');
+            }
+
 		}
 
 		$controller = $dispatcher->getControllerName();
 		$action = $dispatcher->getActionName();
 
 		$acl = $this->getAcl();
+        $allowed = Acl::DENY;
+        foreach($roles as $role){
+            $allowed = $acl->isAllowed($role, $controller, $action);
+            if ($allowed == Acl::ALLOW) {
+                return true;
+            }
+        }
 
-		$allowed = $acl->isAllowed($role, $controller, $action);
-		if ($allowed != Acl::ALLOW) {
-			$dispatcher->forward(array(
-				'controller' => 'errors',
-				'action'     => 'show401'
-			));
-			return false;
-		}
+
+        $dispatcher->forward(array(
+            'controller' => 'errors',
+            'action'     => 'show401'
+        ));
+        return false;
+
 	}
 }
