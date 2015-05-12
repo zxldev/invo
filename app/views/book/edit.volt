@@ -1,87 +1,80 @@
-{{ content() }}
-{{ form("book/save", "method":"post") }}
-
-<table width="100%">
-    <tr>
-        <td align="left">{{ link_to("book", "Go Back") }}</td>
-        <td align="right">{{ submit_button("Save") }}</td>
-    </tr>
-</table>
-
-<div align="center">
-    <h1>Edit book</h1>
+<div class="container">
+    <div class="row">
+        <br/>
+    </div>
+    <div class="row">
+        <div class="col-xs-1">{{ link_to("book", "返回","class":"btn btn-primary") }}</div>
+        <div class="col-xs-10"><h1>录入新书</h1></div>
+        <div class="col-xs-1"> {{ submit_button("保存","class":"btn btn-primary") }}</div>
+    </div>
 </div>
+{{ content() }}
+<form action="/book/save" method="post" class="form-horizontal">
 
-<table>
-    <tr>
-        <td align="right">
-            <label for="book_types_id">Book Of Types</label>
-        </td>
-        <td align="left">
-            {{ text_field("book_types_id", "type" : "numeric") }}
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="name">Name</label>
-        </td>
-        <td align="left">
-            {{ text_field("name", "size" : 30) }}
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="author">Author</label>
-        </td>
-        <td align="left">
-            {{ text_field("author", "size" : 30) }}
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="press">Press</label>
-        </td>
-        <td align="left">
-            {{ text_field("press", "size" : 30) }}
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="price">Price</label>
-        </td>
-        <td align="left">
-            {{ text_field("price", "type" : "numeric") }}
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="active">Active</label>
-        </td>
-        <td align="left">
-                {{ text_field("active""size" : 30) }}
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="ext1">Ext1</label>
-        </td>
-        <td align="left">
-            {{ text_field("ext1", "size" : 30) }}
-        </td>
-    </tr>
-    <tr>
-        <td align="right">
-            <label for="ext2">Ext2</label>
-        </td>
-        <td align="left">
-            {{ text_field("ext2", "size" : 30) }}
-        </td>
-    </tr>
+    <div class="form-group">
+        <label for="book_types_id" class="col-sm-3 control-label">图书分类</label>
 
-    <tr>
-        <td>{{ hidden_field("id") }}</td>
-        <td>{{ submit_button("Save") }}</td>
-    </tr>
-</table>
+        <div class="col-sm-6">
+            {{ text_field("book_types_id", "type" : "numeric","class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="name" class="col-sm-3 control-label">书名</label>
 
+        <div class="col-sm-6">
+            {{ text_field("name", "size" : 30,"class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="author" class="col-sm-3 control-label">作者</label>
+
+        <div class="col-sm-6">
+            {{ text_field("author", "size" : 30,"class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="press" class="col-sm-3 control-label">出版社</label>
+
+        <div class="col-sm-6">
+            {{ text_field("press", "size" : 30,"class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="price" class="col-sm-3 control-label">定价</label>
+
+        <div class="col-sm-6">
+            {{ text_field("price", "type" : "numeric","class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="active" class="col-sm-3 control-label">当前状态</label>
+
+        <div class="col-sm-6">
+            {{ text_field("active","class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext1" class="col-sm-3 control-label">扩展1</label>
+
+        <div class="col-sm-6">
+            {{ text_field("ext1", "size" : 30,"class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext2" class="col-sm-3 control-label">扩展2</label>
+
+        <div class="col-sm-6">
+            {{ text_field("ext2", "size" : 30,"class":"form-control") }}
+        </div>
+    </div>
+    {{ hidden_field("id") }}
+    {{ submit_button("保存","class":"btn btn-primary") }}
+    </div>
 </form>
+
+
+
+
+
+
+
