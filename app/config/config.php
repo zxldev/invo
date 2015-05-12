@@ -11,11 +11,10 @@ return new \Phalcon\Config(
             'charset' => 'utf8', //数据库字符集 utf8
         ),
         'server' => array(
-
             'redis' => array(
-                'ip' => '10.10.101.33',
+                'ip' => '123.56.107.130',
                 'port' => '6379',
-                'auth' => 'redis'
+                'auth' => 'redisXiaodada1'
             ),
         ),
         'application' => array(

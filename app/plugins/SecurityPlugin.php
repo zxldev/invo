@@ -26,7 +26,7 @@ class SecurityPlugin extends Plugin
 
 		//throw new \Exception("something");
 
-		if (isset($this->persistent->acl)) {
+		if (!isset($this->persistent->acl)) {
 
 			$acl = new AclList();
 

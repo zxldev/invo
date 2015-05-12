@@ -125,6 +125,33 @@ $di->setShared('logger',function(){
 });
 
 /**
+ * Start the session the first time some component request the session service
+ */
+$di->set('session', function ()  use ($config) {
+    $reids = $config->server['redis'];
+    $array = array(
+        'path' => "http://".$reids['ip'].":".$reids['port']."?auth=".$reids['auth']."",
+//        'name'=>'',
+//        'lifetime'=>'',
+//        'cookie_lifetime'=>'',
+//        'cookie_secure'=>'',
+//        'cookie_domain' =>'bst.com',
+    );
+    $session = new RedisSession($array);
+    $session->start();
+    return $session;
+});
+
+
+$di->setShared('redis',function()  use ($config){
+    $reids = $config->server['redis'];
+    $redis = new Redis();
+    $redis->connect($reids['ip'],$reids['port']);
+    $redis->auth($reids['auth']);
+    return $redis;
+});
+
+/**
  * If the configuration specify the use of metadata adapter use it or use memory otherwise
  */
 $di->set('modelsMetadata', function() {
@@ -134,11 +161,11 @@ $di->set('modelsMetadata', function() {
 /**
  * Start the session the first time some component request the session service
  */
-$di->set('session', function() {
-	$session = new SessionAdapter();
-	$session->start();
-	return $session;
-});
+//$di->set('session', function() {
+//	$session = new SessionAdapter();
+//	$session->start();
+//	return $session;
+//});
 
 /**
  * Register the flash service with custom CSS classes
