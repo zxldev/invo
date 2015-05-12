@@ -153,3 +153,52 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2012-04-10 20:53:38
+
+
+
+
+DROP TABLE IF EXISTS `book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `book_types_id` int(10) unsigned NOT NULL, -- 图书分类
+  `name` varchar(170) COLLATE utf8_spanish_ci NOT NULL,-- 书名
+  `author` varchar(170),-- 作者
+  `press` varchar(170),-- 出版社
+  `price` decimal(16,2) NOT NULL,
+  `active` enum('Y','N') COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ext1` varchar(170),-- 扩展1
+  `ext2` varchar(170),-- 扩展2
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+
+
+DROP TABLE IF EXISTS `borrow`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `borrow` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `book_id` int(10) unsigned NOT NULL, -- 书籍ID
+  `borrow_types_id` int(10) unsigned NOT NULL, -- 借阅类型 管理员借阅/转借
+  `userid` varchar(170) COLLATE utf8_spanish_ci NOT NULL,-- 书名
+  `borrowtime` TIMESTAMP,-- 借阅时间
+  `returntime` TIMESTAMP,-- 归还/转借时间
+  `ext1` varchar(170),-- 扩展1
+  `ext2` varchar(170),-- 扩展2
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+DROP TABLE IF EXISTS `pre_borrow`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pre_borrow` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `book_id` int(10) unsigned NOT NULL, -- 书籍ID
+  `userid` varchar(170) COLLATE utf8_spanish_ci NOT NULL,-- 书名
+  `ext1` varchar(170),-- 扩展1
+  `ext2` varchar(170),-- 扩展2
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;

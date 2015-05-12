@@ -55,7 +55,7 @@ class SessionController extends ControllerBase
                 return $this->forward('invoices/index');
             }
 
-            $this->flash->error('Wrong email/password');
+            $this->flash->error('用户名或密码错误！');
         }
 
         return $this->forward('session/index');

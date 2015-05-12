@@ -46,7 +46,7 @@ class ContactController extends ControllerBase
             return $this->forward('contact/index');
         }
 
-        $this->flash->success('Thanks, we will contact you in the next few hours');
+        $this->flash->success('谢谢您的宝贵意见。');
         return $this->forward('index/index');
     }
 }
