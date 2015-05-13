@@ -6,6 +6,20 @@ use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 
 class Users extends Model
 {
+
+
+    public $id;
+
+    public $username;
+
+    public $name;
+
+    public function initialize() {
+        $this->hasMany("id", "Borrow", "userid");
+    }
+
+
+
     public function validation()
     {
         $this->validate(new EmailValidator(array(

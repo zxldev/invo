@@ -20,6 +20,10 @@ class Elements extends Component
                 'caption' => '我的图书',
                 'action' => 'index'
             ),
+            'book' => array(
+                'caption' => '图书馆',
+                'action' => 'index'
+            ),
             'about' => array(
                 'caption' => '关于',
                 'action' => 'index'
@@ -43,14 +47,9 @@ class Elements extends Component
             'action' => 'index',
             'any' => false
         ),
-        '图书馆' => array(
-            'controller' => 'book',
-            'action' => 'index',
-            'any' => true
-        ),
         '预借' => array(
             'controller' => 'pre_borrow',
-            'action' => 'index',
+            'action' => 'search',
             'any' => true
         ),
         '我想看的' => array(
@@ -63,6 +62,15 @@ class Elements extends Component
             'action' => 'profile',
             'any' => false
         )
+    );
+
+
+    private $_lib_tabs = array(
+        '图书馆' => array(
+            'controller' => 'book',
+            'action' => 'index',
+            'any' => true
+        ),
     );
 
     /**
@@ -111,6 +119,25 @@ class Elements extends Component
         $actionName = $this->view->getActionName();
         echo '<ul class="nav nav-tabs">';
         foreach ($this->_tabs as $caption => $option) {
+            if ($option['controller'] == $controllerName && ($option['action'] == $actionName || $option['any'])) {
+                echo '<li class="active">';
+            } else {
+                echo '<li>';
+            }
+            echo $this->tag->linkTo($option['controller'] . '/' . $option['action'], $caption), '<li>';
+        }
+        echo '</ul>';
+    }
+
+    /**
+     * Returns menu tabs
+     */
+    public function getLibTabs()
+    {
+        $controllerName = $this->view->getControllerName();
+        $actionName = $this->view->getActionName();
+        echo '<ul class="nav nav-tabs">';
+        foreach ($this->_lib_tabs as $caption => $option) {
             if ($option['controller'] == $controllerName && ($option['action'] == $actionName || $option['any'])) {
                 echo '<li class="active">';
             } else {

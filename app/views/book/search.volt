@@ -9,7 +9,9 @@
         </div>
         <div class="col-xs-10"><br/></div>
         <div class="col-xs-1">
+            <?php if(in_array('BookAdmin',$this->session->get('auth')['userrole'])){ ?>
             {{ link_to("book/new", "录入新图书","class":"btn btn-primary") }}
+            <?php }?>
         </div>
     </div>
     <div class="row">
@@ -31,7 +33,7 @@
             <th>定价</th>
             <th>是否可借</th>
             <th>借阅用户</th>
-            <th colspan="2">操作</th>
+            <th colspan="4">操作</th>
          </tr>
     </thead>
     <tbody>
@@ -45,9 +47,13 @@
             <td>{{ book.press }}</td>
             <td>{{ book.price }}</td>
             <td>{{ book.active }}</td>
-            <td>{{ book.ext1 }}</td>
+            <td>{% if  book.borrow %}{{  book.borrow.users.name }}{% endif %}</td>
+            <td>{{link_to("book/delete/"~book.id, "预借")}}
+            <?php if(in_array('BookAdmin',$this->session->get('auth')['userrole'])){ ?>
             <td>{{ link_to("book/edit/"~book.id, "修改") }}</td>
             <td>{{ link_to("book/delete/"~book.id, "删除") }}</td>
+            <td>{% if  book.borrow %} {{ link_to("borrow/delete/"~book.id, "还书") }}   {%else%}<input type="text" id="username{{ book.id }}" name="userauto" class="userauto"  autocomplete="true"> <input type="hidden" id="valueusername{{ book.id }}">  {{ link_to("borrow/new/"~book.id, "借出") }}{% endif %}</td>
+            <?php }?>
         </tr>
     {% endfor %}
     {% endif %}
@@ -66,3 +72,30 @@
     <li>{{ link_to("book/search?page="~page.next, "下一页") }}</li>
     <li>{{ link_to("book/search?page="~page.last, "&raquo;") }}</li>
 </ul>
+
+<script>
+    $(function() {
+        var countries = [
+            { value: 'Andorra', data: 'AD' },
+            // ...
+            { value: 'Zimbabwe', data: 'ZZ' }
+        ];
+
+//        var countries = ["a","b","aa","啊"];
+
+
+        $("input[name='userauto']").each(function (index,item) {
+           $(item).autocomplete({
+                lookup: countries,
+                onSelect: function (suggestion) {
+                    $("#value"+this.id).val(suggestion.data);
+                    alert($("#value"+this.id).val())
+                }
+            });
+        });
+
+
+    });
+
+
+</script>

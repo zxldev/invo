@@ -210,14 +210,15 @@ class BorrowController extends ControllerBase
     public function deleteAction($id)
     {
 
-        $borrow = Borrow::findFirstByid($id);
+        $borrow = Borrow::findFirstByBookId($id);
         if (!$borrow) {
             $this->flash->error("borrow was not found");
 
             return $this->dispatcher->forward(array(
-                "controller" => "borrow",
-                "action" => "index"
+                "controller" => "book",
+                "action" => "search"
             ));
+
         }
 
         if (!$borrow->delete()) {
@@ -225,19 +226,19 @@ class BorrowController extends ControllerBase
             foreach ($borrow->getMessages() as $message) {
                 $this->flash->error($message);
             }
-
             return $this->dispatcher->forward(array(
-                "controller" => "borrow",
+                "controller" => "book",
                 "action" => "search"
             ));
+
         }
 
         $this->flash->success("borrow was deleted successfully");
-
         return $this->dispatcher->forward(array(
-            "controller" => "borrow",
-            "action" => "index"
+            "controller" => "book",
+            "action" => "search"
         ));
+
     }
 
 }

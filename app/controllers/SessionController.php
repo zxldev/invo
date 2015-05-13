@@ -73,4 +73,8 @@ class SessionController extends ControllerBase
         $this->flash->success('再见!');
         return $this->forward('index/index');
     }
+
+    public function allusersAction(){
+        $users = Users::findall();
+    }
 }

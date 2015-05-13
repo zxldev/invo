@@ -1,16 +1,6 @@
 
 {{ content() }}
 
-<table width="100%">
-    <tr>
-        <td align="left">
-            {{ link_to("pre_borrow/index", "Go Back") }}
-        </td>
-        <td align="right">
-            {{ link_to("pre_borrow/new", "Create ") }}
-        </td>
-    </tr>
-</table>
 
 <table class="browse" align="center">
     <thead>

@@ -78,7 +78,7 @@ class BookController extends ControllerBase
 
             $book = Book::findFirstByid($id);
             if (!$book) {
-                $this->flash->error("book was not found");
+                $this->flash->error("图书不存在。");
 
                 return $this->dispatcher->forward(array(
                     "controller" => "book",
@@ -137,7 +137,7 @@ class BookController extends ControllerBase
             ));
         }
 
-        $this->flash->success("book was created successfully");
+        $this->flash->success("图书添加成功。");
 
         return $this->dispatcher->forward(array(
             "controller" => "book",
@@ -234,7 +234,7 @@ class BookController extends ControllerBase
             ));
         }
 
-        $this->flash->success("book was deleted successfully");
+        $this->flash->success("删除图书成功。");
 
         return $this->dispatcher->forward(array(
             "controller" => "book",

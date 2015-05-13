@@ -23,7 +23,7 @@ class SecurityPlugin extends Plugin
 	 */
 	public function getAcl()
 	{
-//       unset($this->persistent->acl);
+       unset($this->persistent->acl);
 		//throw new \Exception("something");
 		if (!isset($this->persistent->acl)) {
 
@@ -43,8 +43,8 @@ class SecurityPlugin extends Plugin
 
 			//Private area resources
 			$privateResources = array(
-				'book'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				'pre_borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'book'     => array('index', 'search'),
+				'pre_borrow'     => array( 'search', 'new', 'delete'),
 				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 				'invoices'     => array('index', 'profile')
 			);
@@ -54,10 +54,10 @@ class SecurityPlugin extends Plugin
 
 			//管理员Private area resources
 			$adminprivateResources = array(
-				'book'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				'pre_borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'book'     => array('new', 'edit', 'save', 'create', 'delete'),
 				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				'invoices'     => array('index', 'profile')
+				'invoices'     => array('index', 'profile'),
+				'session'    => array('allusers'),
 			);
 			foreach ($adminprivateResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);

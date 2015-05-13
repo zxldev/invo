@@ -5,7 +5,9 @@
     <div class="row">
         <div class="col-xs-11"><h1>搜索图书</h1></div>
         <div class="col-xs-1">
-            {{ link_to("book/new", "录入新图书","class":"btn btn-primary") }}
+         <?php if(in_array('BookAdmin',$this->session->get('auth')['userrole'])){ ?>
+             {{ link_to("book/new", "录入新图书","class":"btn btn-primary") }}
+         <?php }?>
         </div>
     </div>
 </div>
@@ -71,13 +73,3 @@
     {{ submit_button("搜索","class":"btn btn-primary") }}
     </div>
 </form>
-
-
-
-
-
-
-
-
-
-

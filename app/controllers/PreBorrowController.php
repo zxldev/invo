@@ -43,10 +43,7 @@ class PreBorrowController extends ControllerBase
         if (count($pre_borrow) == 0) {
             $this->flash->notice("The search did not find any pre_borrow");
 
-            return $this->dispatcher->forward(array(
-                "controller" => "pre_borrow",
-                "action" => "index"
-            ));
+
         }
 
         $paginator = new Paginator(array(
@@ -200,7 +197,7 @@ class PreBorrowController extends ControllerBase
     public function deleteAction($id)
     {
 
-        $pre_borrow = PreBorrow::findFirstByid($id);
+        $pre_borrow = PreBorrow::findFirst("book_id =$id ");
         if (!$pre_borrow) {
             $this->flash->error("pre_borrow was not found");
 
