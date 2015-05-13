@@ -25,7 +25,7 @@ class SecurityPlugin extends Plugin
 	{
        unset($this->persistent->acl);
 		//throw new \Exception("something");
-		if (!isset($this->persistent->acl)) {
+		if (true||!isset($this->persistent->acl)) {
 
 			$acl = new AclList();
 
@@ -35,7 +35,7 @@ class SecurityPlugin extends Plugin
 			$roles = array(
 				'users'  => new Role('Users'),
 				'guests' => new Role('Guests'),
-				'bookadmin'=>new Role('BookaAdmin')
+				'bookadmin'=>new Role('BookAdmin')
 			);
 			foreach ($roles as $role) {
 				$acl->addRole($role);
@@ -99,7 +99,7 @@ class SecurityPlugin extends Plugin
 			//TODO 修改这里代码
 			foreach ($adminprivateResources as $resource => $actions) {
 				foreach ($actions as $action){
-					$acl->allow('BookaAdmin', $resource, $action);
+					$acl->allow('BookAdmin', $resource, $action);
 				}
 			}
 

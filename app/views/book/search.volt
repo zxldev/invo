@@ -48,11 +48,21 @@
             <td>{{ book.price }}</td>
             <td>{{ book.active }}</td>
             <td>{% if  book.borrow %}{{  book.borrow.users.name }}{% endif %}</td>
-            <td>{{link_to("book/delete/"~book.id, "预借")}}
+            <td><div class="btn-group">{{link_to("book/delete/"~book.id, "预借","class":"btn btn-sm  btn-info")}}
             <?php if(in_array('BookAdmin',$this->session->get('auth')['userrole'])){ ?>
-            <td>{{ link_to("book/edit/"~book.id, "修改") }}</td>
-            <td>{{ link_to("book/delete/"~book.id, "删除") }}</td>
-            <td>{% if  book.borrow %} {{ link_to("borrow/delete/"~book.id, "还书") }}   {%else%}<input type="text" id="username{{ book.id }}" name="userauto" class="userauto"  autocomplete="true"> <input type="hidden" id="valueusername{{ book.id }}">  {{ link_to("borrow/new/"~book.id, "借出") }}{% endif %}</td>
+
+                    {{ link_to("book/edit/"~book.id, "修改","class":"btn  btn-sm btn-warning") }}
+            {{ link_to("book/delete/"~book.id, "删除","class":"btn btn-sm  btn-danger") }}</div></td>
+            <td>{% if  book.borrow %} {{ link_to("borrow/delete/"~book.id, "还书","class":"btn  btn-sm btn-primary") }}   {%else%}
+                <form method="post" class="form-inline" action="/borrow/create">
+                    <div class="form-group-sm">
+                <input type="text" id="username{{ book.id }}" placeholder="选择借书人" name="userauto"  class="form-control col-sm-8"  autocomplete="true">
+                  <input type="hidden" name="borrow_types_id" value="1">
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <input type="hidden" name="userid" id="valueusername{{ book.id }}">
+                        {{ submit_button("借出","class":"btn btn-primary btn-sm col-sm-3") }}
+                        </div>
+                </form>{% endif %}</td>
             <?php }?>
         </tr>
     {% endfor %}
@@ -75,24 +85,30 @@
 
 <script>
     $(function() {
-        var countries = [
-            { value: 'Andorra', data: 'AD' },
-            // ...
-            { value: 'Zimbabwe', data: 'ZZ' }
-        ];
-
-//        var countries = ["a","b","aa","啊"];
-
-
-        $("input[name='userauto']").each(function (index,item) {
-           $(item).autocomplete({
-                lookup: countries,
-                onSelect: function (suggestion) {
-                    $("#value"+this.id).val(suggestion.data);
-                    alert($("#value"+this.id).val())
-                }
-            });
+        $.ajax({
+            type: "GET",
+            url: "/session/allusers",
+            dataType: "json",
+            success: function(data){
+                $("input[name='userauto']").each(function (index,item) {
+                    $(item).autocomplete({
+                        lookup: data,
+                        ajaxSettings:{
+                            method: "GET",
+                            dataType :'json'
+                        },
+                        onSelect: function (suggestion) {
+                            $("#value"+this.id).val(suggestion.data);
+                        }
+                    });
+                });
+            }
         });
+
+
+
+
+
 
 
     });

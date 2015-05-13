@@ -109,8 +109,8 @@ class BorrowController extends ControllerBase
 
         if (!$this->request->isPost()) {
             return $this->dispatcher->forward(array(
-                "controller" => "borrow",
-                "action" => "index"
+                "controller" => "book",
+                "action" => "search"
             ));
         }
 
@@ -119,11 +119,9 @@ class BorrowController extends ControllerBase
         $borrow->book_id = $this->request->getPost("book_id");
         $borrow->borrow_types_id = $this->request->getPost("borrow_types_id");
         $borrow->userid = $this->request->getPost("userid");
-        $borrow->borrowtime = $this->request->getPost("borrowtime");
-        $borrow->returntime = $this->request->getPost("returntime");
+        $borrow->borrowtime = date('Y-m-d H:i:s');
         $borrow->ext1 = $this->request->getPost("ext1");
         $borrow->ext2 = $this->request->getPost("ext2");
-        
 
         if (!$borrow->save()) {
             foreach ($borrow->getMessages() as $message) {
@@ -131,16 +129,16 @@ class BorrowController extends ControllerBase
             }
 
             return $this->dispatcher->forward(array(
-                "controller" => "borrow",
-                "action" => "new"
+                "controller" => "book",
+                "action" => "search"
             ));
         }
 
         $this->flash->success("borrow was created successfully");
 
         return $this->dispatcher->forward(array(
-            "controller" => "borrow",
-            "action" => "index"
+            "controller" => "book",
+            "action" => "search"
         ));
 
     }

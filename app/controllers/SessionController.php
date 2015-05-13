@@ -75,6 +75,10 @@ class SessionController extends ControllerBase
     }
 
     public function allusersAction(){
-        $users = Users::findall();
+        $this->view->setRenderLevel(\Phalcon\Mvc\View::LEVEL_NO_RENDER);
+        $users = Users::find(array(
+            'columns'=>'id as data,name as value'
+        ))->toArray();
+        echo json_encode($users);
     }
 }
