@@ -51,4 +51,9 @@ class Borrow extends \Phalcon\Mvc\Model
      */
     public $ext2;
 
+    public function initialize() {
+    $this->hasOne("book_id", "Book", "id");
+    $this->belongsTo("userid", "Users", "id");
+}
+
 }
