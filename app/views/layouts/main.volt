@@ -1,3 +1,4 @@
+<div class="wapper">
 <nav class="navbar navbar-default navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -13,11 +14,13 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container ">
     {{ flash.output() }}
     {{ content() }}
-    <hr>
-    <footer>
-        <p>&copy; Company 2015</p>
-    </footer>
+
+
 </div>
+</div>
+<footer class="panel-footer">
+    <p class="text-center">&copy; Company 2015</p>
+</footer>

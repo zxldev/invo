@@ -89,6 +89,7 @@ class Elements extends Component
             );
         } else {
             unset($this->_headerMenu['navbar-left']['invoices']);
+            unset($this->_headerMenu['navbar-left']['book']);
         }
 
         $controllerName = $this->view->getControllerName();

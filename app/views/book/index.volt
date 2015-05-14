@@ -42,34 +42,7 @@
             {{ text_field("press", "size" : 30,"class":"form-control") }}
         </div>
     </div>
-    <div class="form-group">
-        <label for="price" class="col-sm-3 control-label">定价</label>
 
-        <div class="col-sm-6">
-            {{ text_field("price", "type" : "numeric","class":"form-control") }}
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="active" class="col-sm-3 control-label">当前状态</label>
-
-        <div class="col-sm-6">
-            {{ text_field("active","class":"form-control") }}
-        </div>
-    </div>
-    <div class="form-group" class="col-sm-3 control-label">
-        <label for="ext1" class="col-sm-3 control-label">扩展1</label>
-
-        <div class="col-sm-6">
-            {{ text_field("ext1", "size" : 30,"class":"form-control") }}
-        </div>
-    </div>
-    <div class="form-group" class="col-sm-3 control-label">
-        <label for="ext2" class="col-sm-3 control-label">扩展2</label>
-
-        <div class="col-sm-6">
-            {{ text_field("ext2", "size" : 30,"class":"form-control") }}
-        </div>
-    </div>
     {{ submit_button("搜索","class":"btn btn-primary") }}
     </div>
 </form>
