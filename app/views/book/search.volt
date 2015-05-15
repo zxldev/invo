@@ -6,7 +6,7 @@
         <div class="col-xs-1">
             {{ link_to("book/index", "返回","class":"btn btn-primary") }}
         </div>
-        <div class="col-xs-10"><br/></div>
+        <div class="col-xs-9"><br/></div>
         <div class="col-xs-1">
             <?php if (in_array('BookAdmin', $this->session->get('auth')['userrole'])) { ?>
                 {{ link_to("book/new", "录入新图书","class":"btn btn-primary") }}
