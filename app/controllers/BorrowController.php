@@ -210,7 +210,7 @@ class BorrowController extends ControllerBase
 
         $borrow = Borrow::findFirstByBookId($id);
         if (!$borrow) {
-            $this->flash->error("borrow was not found");
+            $this->flash->error("没有找到图书！");
 
             return $this->dispatcher->forward(array(
                 "controller" => "book",
@@ -231,7 +231,42 @@ class BorrowController extends ControllerBase
 
         }
 
-        $this->flash->success("borrow was deleted successfully");
+        $this->flash->success("还书成功！");
+        return $this->dispatcher->forward(array(
+            "controller" => "book",
+            "action" => "search"
+        ));
+
+    }
+
+
+    public function deletebarcodeAction($barcode)
+    {
+
+        $borrow = Borrow::findFirstByBarcode($barcode);
+        if (!$borrow) {
+            $this->flash->error("没有找到图书！");
+
+            return $this->dispatcher->forward(array(
+                "controller" => "book",
+                "action" => "search"
+            ));
+
+        }
+//TODO 这是一个视图，不能删除， 不能使用识图，需要修改
+        if (!$borrow->delete()) {
+
+            foreach ($borrow->getMessages() as $message) {
+                $this->flash->error($message);
+            }
+            return $this->dispatcher->forward(array(
+                "controller" => "book",
+                "action" => "search"
+            ));
+
+        }
+
+        $this->flash->success("还书成功！");
         return $this->dispatcher->forward(array(
             "controller" => "book",
             "action" => "search"

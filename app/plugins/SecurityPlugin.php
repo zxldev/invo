@@ -55,7 +55,7 @@ class SecurityPlugin extends Plugin
 			//管理员Private area resources
 			$adminprivateResources = array(
 				'book'     => array('new', 'edit', 'save', 'create', 'delete'),
-				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete','deletebarcode'),
 				'invoices'     => array('index', 'profile'),
 				'session'    => array('allusers'),
 			);

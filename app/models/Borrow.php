@@ -15,6 +15,7 @@ class Borrow extends \Phalcon\Mvc\Model
      */
     public $book_id;
 
+
     /**
      *
      * @var integer
@@ -50,6 +51,15 @@ class Borrow extends \Phalcon\Mvc\Model
      * @var string
      */
     public $ext2;
+
+    /**
+     *
+     * @var string
+     */
+    public $barcode;
+
+    public function getSource() { return "borrowview"; }
+
 
     public function initialize() {
     $this->hasOne("book_id", "Book", "id");

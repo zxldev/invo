@@ -92,6 +92,7 @@ CREATE TABLE `book` (
   `active` enum('Y','N') COLLATE utf8_spanish_ci DEFAULT NULL,
   `ext1` varchar(170),-- 扩展1
   `ext2` varchar(170),-- 扩展2
+  `barcode` varchar(45) NOT NULL ,-- 条形码
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -124,3 +125,9 @@ CREATE TABLE `pre_borrow` (
   `ext2` varchar(170),-- 扩展2
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+
+
+create or replace view borrowview as
+  select t.*,t2.barcode from borrow t ,book t2 where t.book_id = t2.id

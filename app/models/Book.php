@@ -57,6 +57,12 @@ class Book extends \Phalcon\Mvc\Model
      */
     public $ext2;
 
+    /**
+     *
+     * @var string
+     */
+    public $barcode;
+
     public function initialize() {
         $this->hasOne("id", "Borrow", "book_id");
     }
