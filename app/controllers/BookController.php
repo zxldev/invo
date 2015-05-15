@@ -97,6 +97,7 @@ class BookController extends ControllerBase
             $this->tag->setDefault("active", $book->active);
             $this->tag->setDefault("ext1", $book->ext1);
             $this->tag->setDefault("ext2", $book->ext2);
+            $this->tag->setDefault("barcode", $book->barcode);
             
         }
     }
@@ -124,7 +125,7 @@ class BookController extends ControllerBase
         $book->active = $this->request->getPost("active");
         $book->ext1 = $this->request->getPost("ext1");
         $book->ext2 = $this->request->getPost("ext2");
-        
+        $book->barcode = $this->request->getPost("barcode");
 
         if (!$book->save()) {
             foreach ($book->getMessages() as $message) {
@@ -180,7 +181,7 @@ class BookController extends ControllerBase
         $book->active = $this->request->getPost("active");
         $book->ext1 = $this->request->getPost("ext1");
         $book->ext2 = $this->request->getPost("ext2");
-        
+        $book->barcode = $this->request->getPost("barcode");
 
         if (!$book->save()) {
 

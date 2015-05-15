@@ -56,9 +56,7 @@ class Borrow extends \Phalcon\Mvc\Model
      *
      * @var string
      */
-    public $barcode;
 
-    public function getSource() { return "borrowview"; }
 
 
     public function initialize() {

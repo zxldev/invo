@@ -67,6 +67,13 @@
             {{ text_field("ext2", "size" : 30,"class":"form-control") }}
         </div>
     </div>
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext2" class="col-sm-3 control-label">条形码</label>
+
+        <div class="col-sm-6">
+            {{ text_field("barcode", "size" : 45,"class":"form-control") }}
+        </div>
+    </div>
     {{ submit_button("保存","class":"btn btn-primary") }}
     </div>
 </form>
