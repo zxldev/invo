@@ -13,6 +13,13 @@ class InvoicesController extends ControllerBase
 
     public function indexAction()
     {
+        $userid = $this->session->get('auth')['id'];
+        $borrows = Borrow::find("userid='$userid'");
+        if (count($borrows) == 0) {
+            $this->flash->notice("您还没有借阅图书");
+        }else{
+            $this->view->borrows = $borrows;
+        }
     }
 
     /**

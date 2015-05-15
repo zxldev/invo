@@ -134,7 +134,7 @@ class BorrowController extends ControllerBase
             ));
         }
 
-        $this->flash->success("borrow was created successfully");
+        $this->flash->success("借书成功！");
 
         return $this->dispatcher->forward(array(
             "controller" => "book",
