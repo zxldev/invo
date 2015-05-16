@@ -219,6 +219,12 @@ class BorrowController extends ControllerBase
 
         }
 
+        $history = $borrow->toArray();
+        $history['id'] = null;
+        $history['returntime']  =date('Y-m-d H:i:s');
+
+        $borrowhistory = new Borrowhistory();
+        $borrowhistory->create($history);
         if (!$borrow->delete()) {
 
             foreach ($borrow->getMessages() as $message) {

@@ -16,6 +16,7 @@ class Users extends Model
 
     public function initialize() {
         $this->hasMany("id", "Borrow", "userid");
+        $this->hasMany("id", "Borrowhistory", "userid");
     }
 
 
