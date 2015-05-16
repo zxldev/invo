@@ -47,6 +47,11 @@ class Elements extends Component
             'action' => 'index',
             'any' => false
         ),
+        '借阅历史' => array(
+            'controller' => 'borrow',
+            'action' => 'history',
+            'any' => false
+        ),
         '预借' => array(
             'controller' => 'pre_borrow',
             'action' => 'search',
