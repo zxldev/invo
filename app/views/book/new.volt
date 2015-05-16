@@ -74,6 +74,42 @@
             {{ text_field("barcode", "size" : 45,"class":"form-control") }}
         </div>
     </div>
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext2" class="col-sm-3 control-label">CIP</label>
+
+        <div class="col-sm-6">
+            {{ text_field("cip", "size" : 2000,"class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext2" class="col-sm-3 control-label">简介</label>
+
+        <div class="col-sm-6">
+            {{ text_field("introduction", "size" : 45,"class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext2" class="col-sm-3 control-label">封面</label>
+
+        <div class="col-sm-6">
+            {{ text_field("picurl", "size" : 45,"class":"form-control") }}
+        </div>
+    </div>
+
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext2" class="col-sm-3 control-label">入库时间</label>
+
+        <div class="col-sm-6">
+            {{ text_field("intime", "size" : 45,"class":"form-control") }}
+        </div>
+    </div>
+    <div class="form-group" class="col-sm-3 control-label">
+        <label for="ext2" class="col-sm-3 control-label">书架编号</label>
+
+        <div class="col-sm-6">
+            {{ text_field("bookshellno", "size" : 45,"class":"form-control") }}
+        </div>
+    </div>
     {{ submit_button("保存","class":"btn btn-primary") }}
     </div>
 </form>

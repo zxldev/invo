@@ -84,17 +84,22 @@ DROP TABLE IF EXISTS `book`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `book` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `book_types_id` int(10) unsigned NOT NULL, -- 图书分类
-  `name` varchar(170) COLLATE utf8_spanish_ci NOT NULL,-- 书名
-  `author` varchar(170),-- 作者
-  `press` varchar(170),-- 出版社
-  `price` decimal(16,2) NOT NULL,
+  `book_types_id` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `name` varchar(170) COLLATE utf8_spanish_ci NOT NULL,
+  `author` varchar(170) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `press` varchar(170) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `price` decimal(16,2) DEFAULT NULL,
   `active` enum('Y','N') COLLATE utf8_spanish_ci DEFAULT NULL,
-  `ext1` varchar(170),-- 扩展1
-  `ext2` varchar(170),-- 扩展2
-  `barcode` varchar(45) NOT NULL ,-- 条形码
+  `ext1` varchar(170) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ext2` varchar(170) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `barcode` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `cip` varchar(2000) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `introduction` varchar(5000) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `picurl` varchar(150) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `intime` timestamp NULL DEFAULT NULL,
+  `bookshellno` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
 

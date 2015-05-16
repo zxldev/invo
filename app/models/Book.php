@@ -11,7 +11,7 @@ class Book extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var integer
+     * @var string
      */
     public $book_types_id;
 
@@ -63,7 +63,38 @@ class Book extends \Phalcon\Mvc\Model
      */
     public $barcode;
 
-    public function initialize() {
+    /**
+     *
+     * @var string
+     */
+    public $cip;
+
+    /**
+     *
+     * @var string
+     */
+    public $introduction;
+
+    /**
+     *
+     * @var string
+     */
+    public $picurl;
+
+    /**
+     *
+     * @var string
+     */
+    public $intime;
+
+    /**
+     *
+     * @var string
+     */
+    public $bookshellno;
+
+    public function initialize()
+    {
         $this->hasOne("id", "Borrow", "book_id");
     }
 
