@@ -97,6 +97,7 @@ class Book extends \Phalcon\Mvc\Model
     {
         $this->hasOne("id", "Borrow", "book_id");
         $this->hasMany("id", "Borrowhistory", "book_id");
+        $this->hasMany("id", "PreBorrow", "book_id");
     }
 
 }

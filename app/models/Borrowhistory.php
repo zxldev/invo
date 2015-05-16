@@ -52,10 +52,6 @@ class Borrowhistory extends \Phalcon\Mvc\Model
      */
     public $ext2;
 
-    /**
-     *
-     * @var string
-     */
 
 
 

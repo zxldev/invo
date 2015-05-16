@@ -33,4 +33,9 @@ class PreBorrow extends \Phalcon\Mvc\Model
      */
     public $ext2;
 
+    public function initialize() {
+        $this->belongsTo("book_id", "Book", "id");
+        $this->belongsTo("userid", "Users", "id");
+    }
+
 }

@@ -22,7 +22,7 @@
             {{ form.render('comments', ['class': 'form-control']) }}
         </div>
         <div class="form-group">
-            {{ submit_button('Send', 'class': 'btn btn-primary btn-large') }}
+            {{ submit_button('发送', 'class': 'btn btn-primary btn-large') }}
         </div>
     </fieldset>
 </form>

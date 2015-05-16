@@ -45,7 +45,7 @@ class SecurityPlugin extends Plugin
 			$privateResources = array(
 				'book'     => array('index', 'search'),
 				'pre_borrow'     => array( 'search', 'new', 'delete'),
-				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete','history'),
+				'borrow'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete','history','preborrow'),
 				'invoices'     => array('index', 'profile')
 			);
 			foreach ($privateResources as $resource => $actions) {

@@ -43,7 +43,10 @@
         <td>{{ book.price }}</td>
         <td>{{ book.active }}</td>
         <td>
-            <div class="btn-group">{{link_to("book/delete/"~book.id, "预借","class":"btn btn-sm btn-info")}}
+            <div class="btn-group">
+                {{if book.preborrow}}
+                {{link_to("borrow/preborrow/"~book.id, "预借","class":"btn btn-sm btn-info")}}
+
                 <?php if (in_array('BookAdmin', $this->session->get('auth')['userrole'])){ ?>
                 {{ link_to("book/edit/"~book.id, "修改","class":"btn btn-sm btn-warning") }}
                 {{ link_to("book/delete/"~book.id, "删除","class":"btn btn-sm btn-danger") }}

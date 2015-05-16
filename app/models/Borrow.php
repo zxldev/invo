@@ -52,11 +52,6 @@ class Borrow extends \Phalcon\Mvc\Model
      */
     public $ext2;
 
-    /**
-     *
-     * @var string
-     */
-
 
 
     public function initialize() {

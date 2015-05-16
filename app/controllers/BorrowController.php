@@ -289,6 +289,10 @@ class BorrowController extends ControllerBase
 
     }
 
+
+    /**
+     * 借阅历史
+     */
     public function historyAction()
     {
         $userid = $this->session->get('auth')['id'];
@@ -299,5 +303,43 @@ class BorrowController extends ControllerBase
             $this->view->borrows = $borrows;
         }
     }
+
+
+    /**
+     * 预借
+     */
+
+    public function preborrowAction($id)
+    {
+
+
+        $borrow = new PreBorrow();
+
+        $borrow->book_id = $id;
+        $borrow->userid =$this->session->get('auth')['id'];
+//        $borrow->borrowtime = date('Y-m-d H:i:s');
+        $borrow->ext1 = $this->request->getPost("ext1");
+        $borrow->ext2 = $this->request->getPost("ext2");
+
+        if (!$borrow->save()) {
+            foreach ($borrow->getMessages() as $message) {
+                $this->flash->error($message);
+            }
+
+            return $this->dispatcher->forward(array(
+                "controller" => "book",
+                "action" => "search"
+            ));
+        }
+
+        $this->flash->success("预借成功！");
+
+        return $this->dispatcher->forward(array(
+            "controller" => "book",
+            "action" => "search"
+        ));
+
+    }
+
 
 }
