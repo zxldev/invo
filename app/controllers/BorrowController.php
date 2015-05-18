@@ -123,6 +123,12 @@ class BorrowController extends ControllerBase
         $borrow->ext1 = $this->request->getPost("ext1");
         $borrow->ext2 = $this->request->getPost("ext2");
 
+        //如果存在预借，删除预借
+        $preborrow = PreBorrow::findFirst("userid= $borrow->userid and book_id = $borrow->book_id");
+        if($preborrow){
+            $preborrow->delete();
+        }
+
         if (!$borrow->save()) {
             foreach ($borrow->getMessages() as $message) {
                 $this->flash->error($message);
@@ -333,6 +339,36 @@ class BorrowController extends ControllerBase
         }
 
         $this->flash->success("预借成功！");
+
+        return $this->dispatcher->forward(array(
+            "controller" => "book",
+            "action" => "search"
+        ));
+
+    }
+
+
+
+    /**
+     * 取消预借
+     */
+
+    public function cancelpreborrowAction($id)
+    {
+
+        $borrow = PreBorrow::findFirst("book_id = '$id' and userid = ".$this->session->get('auth')['id']);
+        if ($borrow&&!$borrow->delete()) {
+            foreach ($borrow->getMessages() as $message) {
+                $this->flash->error($message);
+            }
+
+            return $this->dispatcher->forward(array(
+                "controller" => "book",
+                "action" => "search"
+            ));
+        }
+
+        $this->flash->success("取消预借成功！");
 
         return $this->dispatcher->forward(array(
             "controller" => "book",

@@ -44,8 +44,18 @@
         <td>{{ book.active }}</td>
         <td>
             <div class="btn-group">
-                {{if book.preborrow}}
-                {{link_to("borrow/preborrow/"~book.id, "预借","class":"btn btn-sm btn-info")}}
+                <?php if(!$book->getBorrow('userid='.$this->session->get('auth')['id'])) { ?>
+                    <?php if (!$book->getPreBorrow('userid=' . $this->session->get('auth')['id'])->count()) { ?>
+                        {{link_to("borrow/preborrow/"~book.id, "预借","class":"btn btn-sm btn-info")}}
+                    <?php } else { ?>
+                        {{link_to("borrow/cancelpreborrow/"~book.id, "取消预借","class":"btn btn-sm btn-info")}}
+                    <?php
+                    }
+                }else{
+                    ?>
+                    <input type="button" value="您已借" class="btn btn-sm btn-info">
+                <?php
+                }?>
 
                 <?php if (in_array('BookAdmin', $this->session->get('auth')['userrole'])){ ?>
                 {{ link_to("book/edit/"~book.id, "修改","class":"btn btn-sm btn-warning") }}
